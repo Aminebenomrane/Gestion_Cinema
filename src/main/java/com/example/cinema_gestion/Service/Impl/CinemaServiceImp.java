@@ -3,6 +3,7 @@ package com.example.cinema_gestion.Service.Impl;
 import com.example.cinema_gestion.Dao.CinemaRepository;
 import com.example.cinema_gestion.Models.Cinema;
 import com.example.cinema_gestion.Service.CinemaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 
 public class CinemaServiceImp implements CinemaService {
 
@@ -23,9 +25,9 @@ public class CinemaServiceImp implements CinemaService {
     }
 
     @Override
-    public Cinema getCinemaById(Long id) {
-        Optional<Cinema> optionalCinema = cinemaRepository.findById(id);
-        return optionalCinema.orElse(null);
+    public Optional<Cinema> getCinemaById(Long id) {
+      return  cinemaRepository.findById(id);
+
     }
 
     @Override

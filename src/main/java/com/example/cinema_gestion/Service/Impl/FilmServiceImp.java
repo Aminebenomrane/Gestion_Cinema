@@ -3,13 +3,16 @@ package com.example.cinema_gestion.Service.Impl;
 import com.example.cinema_gestion.Dao.FilmRepository;
 import com.example.cinema_gestion.Models.Film;
 import com.example.cinema_gestion.Service.FilmService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-
+@Service
+@Slf4j
 public class FilmServiceImp implements FilmService {
     @Autowired
     private FilmRepository filmRepository;

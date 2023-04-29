@@ -16,8 +16,8 @@ public class Ticket {
     private Long id;
     private double prix;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id")
-    private Client client;
+    @JoinColumn(name="id_user")
+    private User user;
     @ManyToOne
     @JoinColumn(name="id_film")
     private Film film;

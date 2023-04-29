@@ -2,16 +2,23 @@ package com.example.cinema_gestion.Controller;
 
 import com.example.cinema_gestion.Controller.Api.FilmApi;
 import com.example.cinema_gestion.Models.Film;
-import com.example.cinema_gestion.Service.FilmService;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.cinema_gestion.Service.Impl.FilmServiceImp;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-
+@RestController
 public class ControllerFilm implements FilmApi {
-@Autowired
-    FilmService filmService;
+
+    FilmServiceImp filmService;
+
+    public ControllerFilm(FilmServiceImp filmService) {
+        this.filmService = filmService;
+    }
+
     @Override
     public Film save(Film film) {
         return filmService.saveFilm(film);

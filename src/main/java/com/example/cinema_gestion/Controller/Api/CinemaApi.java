@@ -9,6 +9,7 @@ import java.util.Optional;
 import static com.example.cinema_gestion.Utils.Constants.Api_Root;
 
 public interface CinemaApi {
+
     @PostMapping(value = Api_Root + "/cinema/create")
     Cinema save(@RequestBody Cinema cinema);
     @GetMapping(value = Api_Root + "/cinema/{id}")
@@ -16,5 +17,5 @@ public interface CinemaApi {
     @GetMapping(value = Api_Root + "/cinema/All")
     List<Cinema> findAll();
     @DeleteMapping(value = Api_Root + "/cinema/delete/{id}")
-    void delete(Long id);
+    void delete(@PathVariable("id") Long id);
 }

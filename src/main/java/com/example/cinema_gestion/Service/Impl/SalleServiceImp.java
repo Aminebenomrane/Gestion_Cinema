@@ -3,11 +3,14 @@ package com.example.cinema_gestion.Service.Impl;
 import com.example.cinema_gestion.Dao.SalleRepository;
 import com.example.cinema_gestion.Models.Salle;
 import com.example.cinema_gestion.Service.SalleService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
+@Slf4j
 public class SalleServiceImp implements SalleService {
     @Autowired
 private SalleRepository salleRepository;
@@ -18,9 +21,9 @@ private SalleRepository salleRepository;
     }
 
     @Override
-    public Salle getSalleById(Long id) {
-        Optional<Salle> optionalSalle = salleRepository.findById(id);
-        return optionalSalle.orElse(null);
+    public Optional <Salle> getSalleById(Long id) {
+        return salleRepository.findById(id);
+
     }
 
     @Override
