@@ -1,5 +1,6 @@
 package com.example.cinema_gestion.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,9 +18,12 @@ public class Salle {
     private Long id;
     private int nbPlaces;
     private Boolean disponible;
+    @JsonIgnore
     @OneToMany(mappedBy="salle")
     private Collection<Film> films;
     @ManyToOne
     @JoinColumn(name="id_cinema")
     private Cinema cinema;
+
+
 }

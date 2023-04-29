@@ -1,5 +1,6 @@
 package com.example.cinema_gestion.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,9 +30,7 @@ private Long id;
     @ManyToOne
     @JoinColumn(name="id_salle")
     private Salle salle;
-    @ManyToOne
-    @JoinColumn(name="id_cinema")
-    private Cinema cinema;
+    @JsonIgnore
     @OneToMany(mappedBy="film")
     private Collection<Ticket> tickets;
 

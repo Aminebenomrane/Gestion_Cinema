@@ -1,4 +1,5 @@
 package com.example.cinema_gestion.Models;
 
-public class Admin extends User{
+public enum Role {
+    Admin,Client
 }

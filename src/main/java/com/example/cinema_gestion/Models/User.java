@@ -1,4 +1,5 @@
 package com.example.cinema_gestion.Models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,9 +20,11 @@ public class User {
     private String prenom;
     @Column(unique = true)
     private String login;
-    private String motPass;
-    private String Telephone;
+    private String password;
+    private Role role ;
 
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Collection<Ticket> ticktes;
 
 }
