@@ -1,7 +1,9 @@
 package com.example.cinema_gestion.Service.Impl;
 
 import com.example.cinema_gestion.Dao.FilmRepository;
+import com.example.cinema_gestion.Dao.SalleRepository;
 import com.example.cinema_gestion.Models.Film;
+import com.example.cinema_gestion.Models.Salle;
 import com.example.cinema_gestion.Service.FilmService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import java.util.function.Function;
 public class FilmServiceImp implements FilmService {
     @Autowired
     private FilmRepository filmRepository;
+    @Autowired
+    private SalleRepository salleRepository;
 
     @Override
     public List<Film> getAllFilms() {
@@ -30,6 +34,11 @@ public class FilmServiceImp implements FilmService {
 
     @Override
     public Film saveFilm(Film film) {
+        Long salleId = film.getSalle().getId();
+        Salle salle = salleRepository.findById(salleId)
+                .orElseThrow(() -> new RuntimeException("Salle not found"));
+        film.setNbr_ticket(salle.getNbPlaces());
+        film.setSalle(salle);
         return filmRepository.save(film);
     }
 
@@ -46,9 +55,9 @@ public class FilmServiceImp implements FilmService {
             Film existingFilm = optionalFilm.get();
 
             existingFilm.setTitre(film.getTitre());
-            existingFilm.setRealisateur(film.getRealisateur());
+
             existingFilm.setActeur(film.getActeur());
-            existingFilm.setAnneeSortie(film.getAnneeSortie());
+
             existingFilm.setGenre(film.getGenre());
             existingFilm.setDuree(film.getDuree());
             existingFilm.setMontant(film.getMontant());

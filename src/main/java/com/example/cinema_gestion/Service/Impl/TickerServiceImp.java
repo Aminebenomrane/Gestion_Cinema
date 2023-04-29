@@ -1,6 +1,8 @@
 package com.example.cinema_gestion.Service.Impl;
 
+import com.example.cinema_gestion.Dao.FilmRepository;
 import com.example.cinema_gestion.Dao.TicketRepository;
+import com.example.cinema_gestion.Models.Film;
 import com.example.cinema_gestion.Models.Ticket;
 import com.example.cinema_gestion.Service.TicketService;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,8 @@ import java.util.Optional;
 public class TickerServiceImp implements TicketService {
     @Autowired
 private TicketRepository ticketRepository;
+    @Autowired
+    private FilmRepository filmRepository;
 
     @Override
     public List<Ticket> getAllTickets() {
@@ -28,7 +32,17 @@ private TicketRepository ticketRepository;
 
     @Override
     public Ticket saveTicket(Ticket ticket) {
-        return ticketRepository.save(ticket);
+        Long filmId = ticket.getFilm().getId();
+        Film film = filmRepository.findById(filmId)
+                .orElseThrow(() -> new RuntimeException("Film not found"));
+        ticket.setFilm(film);
+        if (film.isNbrTicketAvailable()) {
+            film.decrementNbrTicket();
+            filmRepository.save(film);
+            return ticketRepository.save(ticket);
+        } else {
+            throw new RuntimeException("No more tickets available for this film");
+        }
     }
 
     @Override

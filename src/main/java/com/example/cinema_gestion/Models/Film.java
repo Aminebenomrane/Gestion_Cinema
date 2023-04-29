@@ -18,14 +18,14 @@ public class Film {
 @GeneratedValue(strategy= GenerationType.IDENTITY)
 private Long id;
     private String titre;
-    private String realisateur;
+    private int nbr_ticket;
     private String acteur;
     private String genre;
     private Double montant;
     @Temporal(TemporalType.TIMESTAMP)
     private Date heureProjection;
     private String Duree;
-    private int anneeSortie;
+
 
     @ManyToOne
     @JoinColumn(name="id_salle")
@@ -33,5 +33,15 @@ private Long id;
     @JsonIgnore
     @OneToMany(mappedBy="film")
     private Collection<Ticket> tickets;
+
+
+
+    public boolean isNbrTicketAvailable() {
+        return nbr_ticket > 0;
+    }
+
+    public void decrementNbrTicket() {
+        nbr_ticket--;
+    }
 
 }
