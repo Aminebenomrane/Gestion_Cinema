@@ -12,6 +12,11 @@ import java.util.Optional;
 public class ControllerTicket implements TicketApi {
 
     TickerServiceImp tickerServiceImp;
+
+    public ControllerTicket(TickerServiceImp tickerServiceImp) {
+        this.tickerServiceImp = tickerServiceImp;
+    }
+
     @Override
     public Ticket save(Ticket ticket) {
         return tickerServiceImp.saveTicket(ticket);

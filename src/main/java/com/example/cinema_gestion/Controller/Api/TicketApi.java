@@ -17,5 +17,5 @@ public interface TicketApi {
     @GetMapping(value = Api_Root + "/Ticket/All")
     List<Ticket> findAll();
     @DeleteMapping(value = Api_Root + "/Ticket/delete/{id}")
-    void delete(Long id);
+    void delete(@PathVariable("id") Long id);
 }

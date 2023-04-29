@@ -17,7 +17,7 @@ public class Salle {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private int nbPlaces;
-    private Boolean disponible;
+
     @JsonIgnore
     @OneToMany(mappedBy="salle")
     private Collection<Film> films;

@@ -15,7 +15,7 @@ public class Ticket {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private double prix;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="id_user")
     private User user;
     @ManyToOne
