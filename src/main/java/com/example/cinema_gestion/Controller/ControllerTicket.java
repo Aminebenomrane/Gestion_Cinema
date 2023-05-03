@@ -4,11 +4,13 @@ import com.example.cinema_gestion.Controller.Api.TicketApi;
 import com.example.cinema_gestion.Models.Ticket;
 import com.example.cinema_gestion.Service.Impl.TickerServiceImp;
 import com.example.cinema_gestion.Service.TicketService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class ControllerTicket implements TicketApi {
 
     TickerServiceImp tickerServiceImp;
